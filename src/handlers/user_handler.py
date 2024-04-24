@@ -2,16 +2,17 @@ from aiogram import Router, F
 from aiogram.types import Message
 
 from src.bot import bot
-from src.keyboard.user.keyboards import start_markup
+from src.keyboard.user.keyboards import signup_markup
 
 user_handler = Router()
+auth_handler = Router()
 
 
 async def user_start(message: Message) -> None:
-    await message.answer(f'Меню пользователя', reply_markup=start_markup())
+    await message.answer(f'Меню пользователя', reply_markup=signup_markup())
 
 
-@user_handler.message(F.contact)
+@auth_handler.message(F.contact)
 async def handle_user_contact(message: Message, admin_id: int) -> None:
     await send_contact_to_admin(message, admin_id)
     message_text = '''Спасибо, что доверились нам!\n
