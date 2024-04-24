@@ -4,6 +4,7 @@ class CallbackEnum:
 
     MAKE_EMPLOYEE: str = 'make_employee_pressed'
     CANCEL_MAKE_EMPLOYEE: str = 'cancel_registration_pressed'
+    SAVE_EMPLOYEE: str = 'save_employee_pressed'
 
     RETURN_MAIN_MENU: str = 'return_main_menu_pressed'
     GO_TO_CURRENT_ORDER: str = 'go_to_current_order_pressed'
