@@ -55,3 +55,24 @@ def user_menu_markup() -> InlineKeyboardMarkup:
     lines = [first_row, second_row, third_row, fourth_row, fifth_row, sixth_row]
     markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, keyboard=lines)
     return markup
+
+
+def current_order_menu() -> InlineKeyboardMarkup:
+    cancel_finished_order_button = InlineKeyboardButton(
+        text=ButtonTextDict['cancel_finished_order'],
+        callback_data=CallbackEnum.CANCEL_FINISHED_ORDER
+    )
+    cancel_not_finished_order_button = InlineKeyboardButton(
+        text=ButtonTextDict['cancel_not_finished_order'],
+        callback_data=CallbackEnum.CANCEL_NOT_FINISHED_ORDER
+    )
+    back_main_menu_button = InlineKeyboardButton(
+        text=ButtonTextDict['return_main_menu'],
+        callback_data=CallbackEnum.RETURN_MAIN_MENU
+    )
+    first_row = [cancel_finished_order_button]
+    second_row = [cancel_not_finished_order_button]
+    third_row = [back_main_menu_button]
+    lines = [first_row, second_row, third_row]
+    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, keyboard=lines)
+    return markup
