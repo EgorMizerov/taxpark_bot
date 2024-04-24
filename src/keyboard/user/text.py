@@ -13,5 +13,8 @@ ButtonTextDict = {
     'start_shift': 'Начать смену',
 
     'cancel_finished_order': 'Отменить выполненный заказ',
-    'cancel_not_finished_order': 'Отмена заказа с потерей активности'
+    'cancel_not_finished_order': 'Отмена заказа с потерей активности',
+
+    'statistics_period': 'Выбор периода отображения',
+    'statistics_variants': 'Варианты статистики'
 }
