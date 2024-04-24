@@ -3,6 +3,7 @@ class CallbackEnum:
     SIGN_IN: str = 'sign_in'
     MAKE_EMPLOYEE: str = 'make_employee_pressed'
     CANCEL_MAKE_EMPLOYEE: str = 'cancel_registration_pressed'
+    SAVE_EMPLOYEE: str = 'save_employee_pressed'
     GO_TO_CURRENT_ORDER: str = 'go_to_current_order_pressed'
     GO_TO_USER_STATISTICS: str = 'go_to_statistics_pressed'
     GO_TO_PROFILE_MANAGER: str = 'go_to_profile_manager_pressed'

@@ -48,5 +48,5 @@ def user_menu_markup() -> InlineKeyboardMarkup:
     fourth_row = [faq_button]
     fifth_row = [subscription_services_button]
     lines = [first_row, second_row, third_row, fourth_row, fifth_row]
-    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, keyboard=lines)
+    markup = InlineKeyboardMarkup(row_width=2, resize_keyboard=True, inline_keyboard=lines)
     return markup

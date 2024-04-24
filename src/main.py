@@ -1,12 +1,8 @@
 import asyncio
 from configparser import ConfigParser
-from typing import Callable, Dict, Any, Awaitable, Mapping
 
-from aiogram import Dispatcher, BaseMiddleware, Router
-from aiogram.types import Message
-from bson import ObjectId
+from aiogram import Dispatcher, Router
 from pymongo import MongoClient
-from pymongo.database import Database
 
 from bot import bot
 from handlers.admin_handler import admin_handler
@@ -14,7 +10,6 @@ from handlers.user_handler import user_handler, auth_handler
 from handlers.command_handler import command_handler
 from handlers.fsm.create_employee import create_employee
 from src.handlers.middleware import AuthMiddleware
-from src.models.user import User
 from src.repository.user_repository import UserRepository
 
 
@@ -41,6 +36,7 @@ def register_db(dp: Dispatcher) -> None:
     client = MongoClient("mongodb://localhost:27017")
     database = client["taxpark"]
     dp['db'] = database
+    dp['user_repository'] = UserRepository(database)
 
 
 async def main() -> None:
