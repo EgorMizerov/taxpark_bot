@@ -2,14 +2,14 @@ from aiogram import Router, F
 from aiogram.types import Message
 
 from src.bot import bot
-from src.keyboard.user.keyboards import signup_markup
+from src.keyboard.user.keyboards import user_menu_markup
 
 user_handler = Router()
 auth_handler = Router()
 
 
 async def user_start(message: Message) -> None:
-    await message.answer(f'Меню пользователя', reply_markup=signup_markup())
+    await message.answer(f'Меню пользователя', reply_markup=user_menu_markup())
 
 
 @auth_handler.message(F.contact)
