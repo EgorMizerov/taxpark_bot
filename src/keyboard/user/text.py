@@ -7,5 +7,6 @@ ButtonTextDict = {
     'go_to_promotions_statistics': 'Статистика по акциям',
     'go_to_info_and_help': 'Информация и помощь',
     'go_to_FAQ': 'Часто задаваемые вопросы',
-    'go_to_subscription_services': 'Услуги по подписке'
+    'go_to_subscription_services': 'Услуги по подписке',
+    'start_shift': 'Начать смену'
 }

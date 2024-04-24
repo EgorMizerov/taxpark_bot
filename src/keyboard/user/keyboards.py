@@ -18,6 +18,10 @@ def user_menu_markup() -> InlineKeyboardMarkup:
         text=ButtonTextDict['go_to_current_order'],
         callback_data=CallbackEnum.GO_TO_CURRENT_ORDER,
     )
+    start_shift_button = InlineKeyboardButton(
+        text=ButtonTextDict['start_shift'],
+        callback_data=CallbackEnum.START_SHIFT
+    )
     user_statistics_button = InlineKeyboardButton(
         text=ButtonTextDict['go_to_user_statistics'],
         callback_data=CallbackEnum.GO_TO_USER_STATISTICS,
@@ -43,10 +47,11 @@ def user_menu_markup() -> InlineKeyboardMarkup:
         callback_data=CallbackEnum.GO_TO_SUBSCRIPTION_SERVICES
     )
     first_row = [current_order_button]
-    second_row = [user_statistics_button, profile_manager_button]
-    third_row = [promotions_statistics_button, info_and_help_button]
-    fourth_row = [faq_button]
-    fifth_row = [subscription_services_button]
-    lines = [first_row, second_row, third_row, fourth_row, fifth_row]
+    second_row = [start_shift_button]
+    third_row = [ user_statistics_button, profile_manager_button]
+    fourth_row = [promotions_statistics_button, info_and_help_button]
+    fifth_row = [faq_button]
+    sixth_row = [subscription_services_button]
+    lines = [first_row, second_row, third_row, fourth_row, fifth_row, sixth_row]
     markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, keyboard=lines)
     return markup

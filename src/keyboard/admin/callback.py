@@ -10,3 +10,4 @@ class CallbackEnum:
     GO_TO_INFO_AND_HELP: str = 'go_to_info_and_help_pressed'
     GO_TO_FAQ: str = 'go_to_faq_pressed'
     GO_TO_SUBSCRIPTION_SERVICES: str = 'go_to_subscription_services_pressed'
+    START_SHIFT: str = 'start_shift_pressed'
