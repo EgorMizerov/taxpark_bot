@@ -25,7 +25,7 @@ def admin_cancel_make_employee() -> InlineKeyboardMarkup:
         text=ButtonTextDict['cancel_registration'],
         callback_data=CallbackEnum.CANCEL_MAKE_EMPLOYEE,
     )
-    second_row = [cancel_registration_button]
-    lines = [second_row]
+    first_row = [cancel_registration_button]
+    lines = [first_row]
     inline_markup = InlineKeyboardMarkup(inline_keyboard=lines)
     return inline_markup
