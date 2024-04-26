@@ -65,13 +65,34 @@ def current_order_menu() -> InlineKeyboardMarkup:
         text=ButtonTextDict['cancel_not_finished_order'],
         callback_data=CallbackEnum.CANCEL_NOT_FINISHED_ORDER
     )
-    back_main_menu_button = InlineKeyboardButton(
+    return_main_menu_button = InlineKeyboardButton(
         text=ButtonTextDict['return_main_menu'],
         callback_data=CallbackEnum.RETURN_MAIN_MENU
     )
     first_row = [cancel_finished_order_button]
     second_row = [cancel_not_finished_order_button]
-    third_row = [back_main_menu_button]
+    third_row = [return_main_menu_button]
+    lines = [first_row, second_row, third_row]
+    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
+    return markup
+
+
+def user_statistics_menu() -> InlineKeyboardMarkup:
+    statistics_period = InlineKeyboardButton(
+        text=ButtonTextDict['statistics_period'],
+        callback_data=CallbackEnum.STATISTICS_PERIOD
+    )
+    statistics_variants = InlineKeyboardButton(
+        text=ButtonTextDict['statistics_variants'],
+        callback_data=CallbackEnum.STATISTICS_VARIANTS
+    )
+    return_main_menu_button = InlineKeyboardButton(
+        text=ButtonTextDict['return_main_menu'],
+        callback_data=CallbackEnum.RETURN_MAIN_MENU
+    )
+    first_row = [statistics_period]
+    second_row = [statistics_variants]
+    third_row = [return_main_menu_button]
     lines = [first_row, second_row, third_row]
     markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
     return markup

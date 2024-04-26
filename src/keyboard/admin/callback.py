@@ -18,3 +18,4 @@ class CallbackEnum:
 
     CANCEL_FINISHED_ORDER: str = 'cancel_finished_order_pressed'
     CANCEL_NOT_FINISHED_ORDER: str = 'cancel_not_finished_order_pressed'
+
