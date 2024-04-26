@@ -13,6 +13,7 @@ from src.keyboard.admin.callback import CallbackEnum
 from src.keyboard.admin.keyboards import admin_cancel_make_employee, admin_start_markup, create_employee_save
 from src.models.user import User, DriverLicense
 from src.repository.user_repository import UserRepository
+from src.yandex.client import YandexAPI
 
 create_employee = Router()
 
@@ -44,9 +45,11 @@ async def cancel_creating_employee(callback: CallbackQuery, state: FSMContext) -
 
 
 @create_employee.callback_query(StateFilter(CreateEmployeeState.save_employee), F.data == CallbackEnum.SAVE_EMPLOYEE)
-async def make_employee(callback: CallbackQuery, state: FSMContext, user_repository: UserRepository) -> None:
+async def make_employee(callback: CallbackQuery, state: FSMContext, user_repository: UserRepository, yandex_client: YandexAPI) -> None:
     user = await build_user_from_state(state)
     user_repository.save(user)
+    # TODO: возвращать id профиля и сохрнаять в БД
+    await yandex_client.create_driver_profile(user)
     await cancel_creating_employee(callback, state)
 
 
@@ -224,6 +227,6 @@ async def get_date(message: str) -> Tuple[str, bool]:
         month = "{:02d}".format(int(args[1]))
         day = "{:02d}".format(int(args[0]))
 
-        return f'{year}.{month}.{day}', True
+        return f'{year}-{month}-{day}', True
     except:
         return '', False

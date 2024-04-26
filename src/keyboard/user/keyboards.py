@@ -1,6 +1,6 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
 
-from src.keyboard.admin.callback import CallbackEnum
+from src.keyboard.user.callback import CallbackEnum
 from src.keyboard.user.text import ButtonTextDict
 
 
@@ -73,5 +73,5 @@ def current_order_menu() -> InlineKeyboardMarkup:
     second_row = [cancel_not_finished_order_button]
     third_row = [back_main_menu_button]
     lines = [first_row, second_row, third_row]
-    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, keyboard=lines)
+    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
     return markup

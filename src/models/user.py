@@ -11,11 +11,11 @@ class DriverLicense(BaseModel):
     """Серия и номер водительского удостоверения"""
     number: constr(min_length=10, max_length=10)
     """Дата начала водительского стажа"""
-    driver_license_experience: constr(pattern=r'^\d{4}.\d{2}.\d{2}$')
+    driver_license_experience: constr(pattern=r'^\d{4}-\d{2}-\d{2}$')
     """Дата выдачи водительского удостоверения в формате ISO 8601 без временной зоны"""
-    issue_date: constr(pattern=r'^\d{4}.\d{2}.\d{2}$')
+    issue_date: constr(pattern=r'^\d{4}-\d{2}-\d{2}$')
     """Дата окончания действия водительского удостоверения в формате ISO 8601 без временной зоны"""
-    expiry_date: constr(pattern=r'^\d{4}.\d{2}.\d{2}$')
+    expiry_date: constr(pattern=r'^\d{4}-\d{2}-\d{2}$')
     """Страна выдачи водительского удостоверения (Трехбуквенный код)"""
     country: str
 

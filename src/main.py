@@ -11,9 +11,10 @@ from handlers.command_handler import command_handler
 from handlers.fsm.create_employee import create_employee
 from src.handlers.middleware import AuthMiddleware
 from src.repository.user_repository import UserRepository
+from src.yandex.client import YandexAPI
 
 
-def register_routers(dp: Dispatcher) -> None:
+def include_routes(dp: Dispatcher) -> None:
     router = Router()
     router.message.middleware(AuthMiddleware(UserRepository(database=dp['db'])))
 
@@ -32,11 +33,20 @@ def register_arguments(dp: Dispatcher, config: ConfigParser) -> None:
 
 
 # TODO: inject arguments for connection string
-def register_db(dp: Dispatcher) -> None:
+def inject_db(dp: Dispatcher) -> None:
     client = MongoClient("mongodb://localhost:27017")
     database = client["taxpark"]
     dp['db'] = database
     dp['user_repository'] = UserRepository(database)
+
+
+def inject_yandex_client(dp: Dispatcher, config: ConfigParser) -> None:
+    client = YandexAPI(
+        client_id=config.get('yandex_api', 'client_id'),
+        api_key=config.get('yandex_api', 'api_key'),
+        park_id=config.get('yandex_api', 'park_id')
+    )
+    dp['yandex_client'] = client
 
 
 async def main() -> None:
@@ -44,9 +54,12 @@ async def main() -> None:
     config.read('config.ini')
 
     dp = Dispatcher()
-    register_db(dp)
-    register_routers(dp)
-    register_arguments(dp, config)
+    dp['config'] = config
+    dp['admin_id'] = config.getint('general', 'admin_id')
+
+    inject_db(dp)
+    include_routes(dp)
+    inject_yandex_client(dp, config)
 
     print("Bot is running")
     await dp.start_polling(bot)
