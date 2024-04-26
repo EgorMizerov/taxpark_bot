@@ -1,6 +1,6 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
 
-from src.keyboard.admin.callback import CallbackEnum
+from src.keyboard.user.callback import CallbackEnum
 from src.keyboard.user.text import ButtonTextDict
 
 
@@ -47,13 +47,12 @@ def user_menu_markup() -> InlineKeyboardMarkup:
         callback_data=CallbackEnum.GO_TO_SUBSCRIPTION_SERVICES
     )
     first_row = [current_order_button]
-    second_row = [start_shift_button]
-    third_row = [user_statistics_button, profile_manager_button]
-    fourth_row = [promotions_statistics_button, info_and_help_button]
-    fifth_row = [faq_button]
-    sixth_row = [subscription_services_button]
-    lines = [first_row, second_row, third_row, fourth_row, fifth_row, sixth_row]
-    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, keyboard=lines)
+    second_row = [start_shift_button, user_statistics_button]
+    third_row = [promotions_statistics_button, profile_manager_button]
+    fourth_row = [faq_button, info_and_help_button]
+    fifth_row = [subscription_services_button]
+    lines = [first_row, second_row, third_row, fourth_row, fifth_row]
+    markup = InlineKeyboardMarkup(row_width=2, resize_keyboard=True, inline_keyboard=lines)
     return markup
 
 
@@ -74,7 +73,7 @@ def current_order_menu() -> InlineKeyboardMarkup:
     second_row = [cancel_not_finished_order_button]
     third_row = [return_main_menu_button]
     lines = [first_row, second_row, third_row]
-    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, keyboard=lines)
+    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
     return markup
 
 
@@ -95,5 +94,5 @@ def user_statistics_menu() -> InlineKeyboardMarkup:
     second_row = [statistics_variants]
     third_row = [return_main_menu_button]
     lines = [first_row, second_row, third_row]
-    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, keyboard=lines)
+    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
     return markup
