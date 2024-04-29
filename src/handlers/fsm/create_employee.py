@@ -12,6 +12,7 @@ from src.bot import bot
 from src.keyboard.admin.callback import CallbackEnum
 from src.keyboard.admin.keyboards import admin_cancel_make_employee, admin_start_markup, create_employee_save
 from src.models.user import User, DriverLicense
+from src.repository.keys import generate_unique_key
 from src.repository.user_repository import UserRepository
 from src.yandex.client import YandexAPI
 
@@ -87,7 +88,7 @@ async def make_employee(callback: CallbackQuery, state: FSMContext) -> None:
 async def input_last_name(message: Message, state: FSMContext) -> None:
     await state.update_data(last_name=message.text, telegram_id=int(message.from_user.id))
     await append_message_id(state, message.message_id)
-    await edit_menu(f'Фамилия: {message.text}', 'Введиет имя пользователя', state)
+    await edit_menu(f'Фамилия: {message.text}', 'Введите имя пользователя', state)
     await state.set_state(CreateEmployeeState.first_name)
 
 
@@ -95,7 +96,7 @@ async def input_last_name(message: Message, state: FSMContext) -> None:
 async def input_first_name(message: Message, state: FSMContext) -> None:
     await state.update_data(first_name=message.text)
     await append_message_id(state, message.message_id)
-    await edit_menu(f'Имя: {message.text}', 'Введиет отчество пользователя', state)
+    await edit_menu(f'Имя: {message.text}', 'Введите отчество пользователя', state)
     await state.set_state(CreateEmployeeState.middle_name)
 
 
@@ -103,7 +104,7 @@ async def input_first_name(message: Message, state: FSMContext) -> None:
 async def input_middle_name(message: Message, state: FSMContext) -> None:
     await state.update_data(middle_name=message.text)
     await append_message_id(state, message.message_id)
-    await edit_menu(f'Отчество: {message.text}', 'Введиет id пользователя', state)
+    await edit_menu(f'Отчество: {message.text}', 'Введите id пользователя', state)
     await state.set_state(CreateEmployeeState.user_id)
 
 
@@ -137,9 +138,10 @@ async def input_starting_v_date(message: Message, state: FSMContext) -> None:
     await edit_menu(f'Начальная дата вождения: {message.text}', 'Введите серию и номер ВУ пользователя', state)
     await state.set_state(CreateEmployeeState.seria_and_number)
 
+
 @create_employee.message(CreateEmployeeState.seria_and_number, F.text)
 async def input_seria_and_number(message: Message, state: FSMContext) -> None:
-    await state.update_data(seria_and_number=message.text)
+    await state.update_data(seria_and_number=message.text.replace(' ', ''))
     await append_message_id(state, message.message_id)
     await edit_menu(f'Серия и номер ВУ: {message.text}', 'Введите страну выдачи ВУ пользователя', state)
     await state.set_state(CreateEmployeeState.country)
@@ -178,8 +180,9 @@ async def input_date_of_expired(message: Message, state: FSMContext) -> None:
         await append_message_id(state, answer.message_id)
         return
 
-    await state.update_data(date_of_expired=date_of_expired)
-    await edit_menu(f'Дата до которой действительно ВУ: {message.text}', 'Карточка пользователя заполнена, данному пользователю сгенерирован ключ - vNSnq@rn-', state, full_data=True)
+    await state.update_data(date_of_expired=date_of_expired) # TODO: добавить дополнительный вопрос есть ли у регистрируемого реферальный ключ
+    key = await generate_unique_key()
+    await edit_menu(f'Дата до которой действительно ВУ: {message.text}', f'Карточка пользователя заполнена, данному пользователю сгенерирован ключ - {key}', state, full_data=True)
     await state.set_state(CreateEmployeeState.save_employee)
 
 

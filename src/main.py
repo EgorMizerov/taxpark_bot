@@ -18,13 +18,13 @@ def include_routes(dp: Dispatcher) -> None:
     router = Router()
     router.message.middleware(AuthMiddleware(UserRepository(database=dp['db'])))
 
-    router.include_router(admin_handler)
     router.include_router(user_handler)
-    router.include_router(command_handler)
-    router.include_router(create_employee)
 
     dp.include_router(router)
     dp.include_router(auth_handler)
+    dp.include_router(command_handler)
+    dp.include_router(admin_handler)
+    dp.include_router(create_employee)
 
 
 def register_arguments(dp: Dispatcher, config: ConfigParser) -> None:
@@ -33,8 +33,8 @@ def register_arguments(dp: Dispatcher, config: ConfigParser) -> None:
 
 
 # TODO: inject arguments for connection string
-def inject_db(dp: Dispatcher) -> None:
-    client = MongoClient("mongodb://localhost:27017")
+def inject_db(dp: Dispatcher,  config: ConfigParser) -> None:
+    client = MongoClient(config.get('database', 'url'))
     database = client["taxpark"]
     dp['db'] = database
     dp['user_repository'] = UserRepository(database)
@@ -57,7 +57,7 @@ async def main() -> None:
     dp['config'] = config
     dp['admin_id'] = config.getint('general', 'admin_id')
 
-    inject_db(dp)
+    inject_db(dp, config)
     include_routes(dp)
     inject_yandex_client(dp, config)
 

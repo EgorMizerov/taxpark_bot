@@ -96,3 +96,50 @@ def user_statistics_menu() -> InlineKeyboardMarkup:
     lines = [first_row, second_row, third_row]
     markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
     return markup
+
+
+def user_promotions_menu() -> InlineKeyboardMarkup:
+    promotions_info_button = InlineKeyboardButton(
+        text=ButtonTextDict['promotions_info'],
+        callback_data=CallbackEnum.PROMOTIONS_INFO
+    )
+    copy_referal_button = InlineKeyboardButton(
+        text=ButtonTextDict['copy_referal'],
+        callback_data=CallbackEnum.COPY_REFERAL
+    )
+    return_main_menu_button = InlineKeyboardButton(
+        text=ButtonTextDict['return_main_menu'],
+        callback_data=CallbackEnum.RETURN_MAIN_MENU
+    )
+    first_row = [promotions_info_button]
+    second_row = [copy_referal_button]
+    third_row = [return_main_menu_button]
+    lines = [first_row, second_row, third_row]
+    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
+    return markup
+
+
+def promotions_info_menu() -> InlineKeyboardMarkup:
+    refer_friend_button = InlineKeyboardButton(
+        text=ButtonTextDict['refer_friend'],
+        callback_data=CallbackEnum.REFER_FRIEND
+    )
+    no_commission_month_button = InlineKeyboardButton(
+        text=ButtonTextDict['no_commission_month'],
+        callback_data=CallbackEnum.NO_COMMISSION_MONTH
+    )
+    return_back_button = InlineKeyboardButton(
+        text=ButtonTextDict['return_back'],
+        callback_data=CallbackEnum.RETURN_BACK
+    )
+    return_main_menu_button = InlineKeyboardButton(
+        text=ButtonTextDict['return_main_menu'],
+        callback_data=CallbackEnum.RETURN_MAIN_MENU
+    )
+    first_row = [refer_friend_button]
+    second_row = [no_commission_month_button]
+    third_row = [return_back_button]
+    fourth_row = [return_main_menu_button]
+    lines = [first_row, second_row, third_row, fourth_row]
+    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
+    return markup
