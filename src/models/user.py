@@ -22,6 +22,8 @@ class DriverLicense(BaseModel):
 
 class User(BaseModel):
     id: ObjectIdField
+    key: str
+    referal_key: int
     telegram_id: int
     first_name: str
     middle_name: str

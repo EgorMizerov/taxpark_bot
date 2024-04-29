@@ -2,6 +2,7 @@ ButtonTextDict = {
     'sign_up': 'Регистрация',
     'sign_in': 'Вход',
 
+    'return_back': 'Вернуться назад',
     'return_main_menu': 'Вернуться в основное меню',
     'go_to_current_order': 'Текущий заказ',
     'go_to_user_statistics': 'Твоя статистика',
@@ -16,5 +17,10 @@ ButtonTextDict = {
     'cancel_not_finished_order': 'Отмена заказа с потерей активности',
 
     'statistics_period': 'Выбор периода отображения',
-    'statistics_variants': 'Варианты статистики'
+    'statistics_variants': 'Варианты статистики',
+
+    'promotions_info': 'Условия по акциям',
+    'copy_referal': 'Скопировать реферальный ключ',
+    'refer_friend': 'Пригласи друга',
+    'no_commission_month': 'Месяц без комиссии'
 }

@@ -1,5 +1,6 @@
 class CallbackEnum:
     RETURN_MAIN_MENU: str = 'return_main_menu_pressed'
+    RETURN_BACK: str = 'return_back_pressed'
 
     # Главное меню
     GO_TO_CURRENT_ORDER: str = 'go_to_current_order_pressed'
@@ -18,3 +19,9 @@ class CallbackEnum:
     # Статистика пользователя
     STATISTICS_PERIOD: str = 'statistics_period_pressed'
     STATISTICS_VARIANTS: str = 'statistics_variants_pressed'
+
+    # Бонусы и акции
+    PROMOTIONS_INFO: str = 'promotions_info_pressed'
+    COPY_REFERAL: str = 'copy_referal_pressed'
+    REFER_FRIEND: str = 'refer_friend_pressed'
+    NO_COMMISSION_MONTH: str = 'no_commission_month_pressed'
