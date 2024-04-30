@@ -4,6 +4,7 @@ ButtonTextDict = {
 
     'return_back': 'Вернуться назад',
     'return_main_menu': 'Вернуться в основное меню',
+
     'go_to_current_order': 'Текущий заказ',
     'go_to_user_statistics': 'Твоя статистика',
     'go_to_profile_manager': 'Управление профилем',
@@ -22,5 +23,11 @@ ButtonTextDict = {
     'promotions_info': 'Условия по акциям',
     'copy_referal': 'Скопировать реферальный ключ',
     'refer_friend': 'Пригласи друга',
-    'no_commission_month': 'Месяц без комиссии'
+    'no_commission_month': 'Месяц без комиссии',
+
+    'help_on_road': 'Помощь на дороге',
+    'make_suggestion': 'Внести предложение',
+
+    'bot_capabilites': 'Информация об возможностях бота',
+    'taxometr_capabilites': ''
 }
