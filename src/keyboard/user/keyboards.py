@@ -2,7 +2,9 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardBut
 
 from src.keyboard.user.callback import CallbackEnum
 from src.keyboard.user.text import ButtonTextDict
+from configparser import ConfigParser
 
+config = ConfigParser()
 
 def signup_markup() -> ReplyKeyboardMarkup:
     sing_up_button = KeyboardButton(
@@ -38,10 +40,6 @@ def user_menu_markup() -> InlineKeyboardMarkup:
         text=ButtonTextDict['go_to_info_and_help'],
         callback_data=CallbackEnum.GO_TO_INFO_AND_HELP
     )
-    faq_button = InlineKeyboardButton(
-        text=ButtonTextDict['go_to_FAQ'],
-        callback_data=CallbackEnum.GO_TO_FAQ
-    )
     subscription_services_button = InlineKeyboardButton(
         text=ButtonTextDict['go_to_subscription_services'],
         callback_data=CallbackEnum.GO_TO_SUBSCRIPTION_SERVICES
@@ -49,7 +47,7 @@ def user_menu_markup() -> InlineKeyboardMarkup:
     first_row = [current_order_button]
     second_row = [start_shift_button, user_statistics_button]
     third_row = [promotions_statistics_button, profile_manager_button]
-    fourth_row = [faq_button, info_and_help_button]
+    fourth_row = [info_and_help_button]
     fifth_row = [subscription_services_button]
     lines = [first_row, second_row, third_row, fourth_row, fifth_row]
     markup = InlineKeyboardMarkup(row_width=2, resize_keyboard=True, inline_keyboard=lines)
@@ -141,5 +139,81 @@ def promotions_info_menu() -> InlineKeyboardMarkup:
     third_row = [return_back_button]
     fourth_row = [return_main_menu_button]
     lines = [first_row, second_row, third_row, fourth_row]
+    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
+    return markup
+
+def info_help_menu() -> InlineKeyboardMarkup:
+    faq_button = InlineKeyboardButton(
+        text=ButtonTextDict['go_to_FAQ'],
+        callback_data=CallbackEnum.GO_TO_FAQ
+    )
+    help_on_road_button = InlineKeyboardButton(
+        text=ButtonTextDict['help_on_road'],
+        callback_data=CallbackEnum.HELP_ON_ROAD
+    )
+    make_suggestion_button = InlineKeyboardButton(
+        text=ButtonTextDict['make_suggestion'],
+        callback_data=CallbackEnum.MAKE_SUGGESTION
+    )
+    return_main_menu_button = InlineKeyboardButton(
+        text=ButtonTextDict['return_main_menu'],
+        callback_data=CallbackEnum.RETURN_MAIN_MENU
+    )
+    first_row = [faq_button]
+    second_row = [help_on_road_button]
+    third_row = [make_suggestion_button]
+    fourth_row = [return_main_menu_button]
+    lines = [first_row, second_row, third_row, fourth_row]
+    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
+    return markup
+
+
+def FAQ_menu() -> InlineKeyboardMarkup:
+    bot_capabilites_button = InlineKeyboardButton(
+        text=ButtonTextDict['bot_capabilites'],
+        callback_data=CallbackEnum.BOT_CAPABILITIES
+    )
+    taxometr_capabilites_button = InlineKeyboardButton(
+        text=ButtonTextDict['taxometr_capabilites'],
+        callback_data=CallbackEnum.TOXOMETR_CAPABILITIES
+    )
+    park_commission_button = InlineKeyboardButton(
+        text=ButtonTextDict['park_commission'],
+        callback_data=CallbackEnum.PARK_COMMISSION
+    )
+    auto_license_button = InlineKeyboardButton(
+        text=ButtonTextDict['auto_license'],
+        callback_data=CallbackEnum.AUTO_LICENSE
+    )
+    self_employed_instructions_button = InlineKeyboardButton(
+        text=ButtonTextDict['self_employed'],
+        callback_data=CallbackEnum.SELF_EMPLOYED_INSTRUCTION
+    )
+    jump_taxi_url_button = InlineKeyboardButton(
+        text=ButtonTextDict['jump_taxi'],
+        callback_data=CallbackEnum.JUMP_TAXI_URL,
+        url='https://my.jump.taxi/'
+    )
+    admin_contact_button = InlineKeyboardButton(
+        text=ButtonTextDict['admin_contact'],
+        callback_data=CallbackEnum.ADMIN_CONTACT,
+        url=config.get('general', 'admin_url')              # Замена на админ аккаунт для рабочего телеграмм
+    )
+    first_row = [bot_capabilites_button,taxometr_capabilites_button]
+    second_row = [park_commission_button]
+    third_row = [park_commission_button]
+    fourth_row = [auto_license_button, self_employed_instructions_button]
+    fifth_row = [jump_taxi_url_button, admin_contact_button]
+    lines = [first_row, second_row, third_row, fourth_row, fifth_row]
+    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
+    return markup
+
+
+def go_back_FAQ_menu() -> InlineKeyboardMarkup:
+    return_back_button = InlineKeyboardButton(
+        text=ButtonTextDict['return_back'],
+        callback_data=CallbackEnum.RETURN_BACK
+    )
+    lines =[[return_back_button]]
     markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
     return markup

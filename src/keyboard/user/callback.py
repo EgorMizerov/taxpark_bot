@@ -8,7 +8,6 @@ class CallbackEnum:
     GO_TO_PROFILE_MANAGER: str = 'go_to_profile_manager_pressed'
     GO_TO_PROMOTION_STATISTICS: str = 'go_to_promotion_statistics_pressed'
     GO_TO_INFO_AND_HELP: str = 'go_to_info_and_help_pressed'
-    GO_TO_FAQ: str = 'go_to_faq_pressed'
     GO_TO_SUBSCRIPTION_SERVICES: str = 'go_to_subscription_services_pressed'
     START_SHIFT: str = 'start_shift_pressed'
 
@@ -25,3 +24,17 @@ class CallbackEnum:
     COPY_REFERAL: str = 'copy_referal_pressed'
     REFER_FRIEND: str = 'refer_friend_pressed'
     NO_COMMISSION_MONTH: str = 'no_commission_month_pressed'
+
+    # Информация и помощь
+    GO_TO_FAQ: str = 'go_to_faq_pressed'
+    HELP_ON_ROAD: str = 'help_on_road_pressed'
+    MAKE_SUGGESTION: str = 'make_suggestion_pressed'
+
+    BOT_CAPABILITIES: str = 'bot_capabilities_pressed'
+    TOXOMETR_CAPABILITIES: str = 'toxomemetric_capabilities_pressed'
+    PARK_COMMISSION: str = 'park_commission_pressed'
+    AUTO_LICENSE: str = 'auto_license_pressed'
+    SELF_EMPLOYED_INSTRUCTION: str = 'self_employed_instruction_pressed'
+    JUMP_TAXI_URL: str = 'jump_taxi_url_pressed'
+    ADMIN_CONTACT: str = 'admin_contact_pressed'
+

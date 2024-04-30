@@ -62,3 +62,4 @@ async def shared_people_fio_list(user_repository: UserRepository, user_id):
     shared_people_list = list()
     user = await user_repository.find_one_by_id({"telegram_id": user_id})
     key = user["key"]
+
