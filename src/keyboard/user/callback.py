@@ -37,3 +37,4 @@ class CallbackEnum:
     SELF_EMPLOYED_INSTRUCTION: str = 'self_employed_instruction_pressed'
     JUMP_TAXI_URL: str = 'jump_taxi_url_pressed'
     ADMIN_CONTACT: str = 'admin_contact_pressed'
+

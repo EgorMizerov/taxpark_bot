@@ -43,24 +43,23 @@ async def send_contact_to_admin(message: Message, admin_id: int) -> None:
         ))
 
 
-# async def handle_promotions(message: Message) -> None:
-#     message_text = \
-#         '''Ваша текущая статистика по акциям:
-#
-#         Вы пригласили - {shared_count} человек.
-#         Сейчас вы получаете награды за:
-#         {await shared_people_fio_list()}'''
-#     await message.answer(
-#         text=message_text.format(
-#             shared_count=None
-#         ),
-#         reply_markup=user_statistics_menu()
-#     )
-#
-#
-# async def shared_people_fio_list(user_repository: UserRepository, user_id):
-#     shared_people_list = list()
-#     user = await user_repository.find_one_by_id({"telegram_id": user_id})
-#     key = user["key"]
+async def handle_promotions(message: Message) -> None:
+    message_text = \
+        '''Ваша текущая статистика по акциям:
+        
+        Вы пригласили - {shared_count} человек.
+        Сейчас вы получаете награды за:
+        {await shared_people_fio_list()}'''
+    await message.answer(
+        text=message_text.format(
+            shared_count=None
+        ),
+        reply_markup=user_statistics_menu()
+    )
 
+
+async def shared_people_fio_list(user_repository: UserRepository, user_id):
+    shared_people_list = list()
+    user = await user_repository.find_one_by_id({"telegram_id": user_id})
+    key = user["key"]
 
