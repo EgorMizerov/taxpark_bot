@@ -180,8 +180,8 @@ async def input_date_of_expired(message: Message, state: FSMContext) -> None:
         await append_message_id(state, answer.message_id)
         return
 
-    await state.update_data(date_of_expired=date_of_expired) # TODO: добавить дополнительный вопрос есть ли у регистрируемого реферальный ключ
     key = await generate_unique_key()
+    await state.update_data(date_of_expired=date_of_expired, key=key) # TODO: добавить дополнительный вопрос есть ли у регистрируемого реферальный ключ
     await edit_menu(f'Дата до которой действительно ВУ: {message.text}', f'Карточка пользователя заполнена, данному пользователю сгенерирован ключ - {key}', state, full_data=True)
     await state.set_state(CreateEmployeeState.save_employee)
 
