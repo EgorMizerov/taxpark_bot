@@ -27,11 +27,14 @@ class CallbackEnum:
 
     # Информация и помощь
     GO_TO_FAQ: str = 'go_to_faq_pressed'
+
     HELP_ON_ROAD: str = 'help_on_road_pressed'
+    REQUEST_HELP: str = 'request_help_pressed'
+
     MAKE_SUGGESTION: str = 'make_suggestion_pressed'
 
     BOT_CAPABILITIES: str = 'bot_capabilities_pressed'
-    TOXOMETR_CAPABILITIES: str = 'toxomemetric_capabilities_pressed'
+    TAXOMETR_CAPABILITIES: str = 'taxometr_capabilities_pressed'
     PARK_COMMISSION: str = 'park_commission_pressed'
     AUTO_LICENSE: str = 'auto_license_pressed'
     SELF_EMPLOYED_INSTRUCTION: str = 'self_employed_instruction_pressed'

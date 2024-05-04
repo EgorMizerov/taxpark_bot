@@ -1,10 +1,12 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
+from configparser import ConfigParser
+config = ConfigParser()
+config.read('config.ini')
+admin = config.get('general', 'admin_url')
 
 from src.keyboard.user.callback import CallbackEnum
 from src.keyboard.user.text import ButtonTextDict
-from configparser import ConfigParser
 
-config = ConfigParser()
 
 def signup_markup() -> ReplyKeyboardMarkup:
     sing_up_button = KeyboardButton(
@@ -168,14 +170,36 @@ def info_help_menu() -> InlineKeyboardMarkup:
     return markup
 
 
+def get_help_on_road_menu() -> InlineKeyboardMarkup:
+    request_help_button = InlineKeyboardButton(
+        text=ButtonTextDict['request_help'],
+        callback_data=CallbackEnum.REQUEST_HELP
+    )
+    return_back_button = InlineKeyboardButton(
+        text=ButtonTextDict['return_back'],
+        callback_data=CallbackEnum.RETURN_BACK
+    )
+    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=[[request_help_button], [return_back_button]])
+    return markup
+
+
+def get_back_info_help_menu() -> InlineKeyboardMarkup:
+    return_back_button = InlineKeyboardButton(
+        text=ButtonTextDict['return_back'],
+        callback_data=CallbackEnum.RETURN_BACK
+    )
+    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=[[return_back_button]])
+    return markup
+
+
 def FAQ_menu() -> InlineKeyboardMarkup:
     bot_capabilites_button = InlineKeyboardButton(
-        text=ButtonTextDict['bot_capabilites'],
+        text=ButtonTextDict['bot_capabilities'],
         callback_data=CallbackEnum.BOT_CAPABILITIES
     )
     taxometr_capabilites_button = InlineKeyboardButton(
-        text=ButtonTextDict['taxometr_capabilites'],
-        callback_data=CallbackEnum.TOXOMETR_CAPABILITIES
+        text=ButtonTextDict['taxometr_capabilities'],
+        callback_data=CallbackEnum.TAXOMETR_CAPABILITIES
     )
     park_commission_button = InlineKeyboardButton(
         text=ButtonTextDict['park_commission'],
@@ -197,15 +221,19 @@ def FAQ_menu() -> InlineKeyboardMarkup:
     admin_contact_button = InlineKeyboardButton(
         text=ButtonTextDict['admin_contact'],
         callback_data=CallbackEnum.ADMIN_CONTACT,
-        url=config.get('general', 'admin_url')              # Замена на админ аккаунт для рабочего телеграмм
+        url=admin              # Замена на админ аккаунт для рабочего телеграмм
     )
-    first_row = [bot_capabilites_button,taxometr_capabilites_button]
+    return_back_button = InlineKeyboardButton(
+        text=ButtonTextDict['return_back'],
+        callback_data=CallbackEnum.RETURN_BACK
+    )
+    first_row = [bot_capabilites_button, taxometr_capabilites_button]
     second_row = [park_commission_button]
-    third_row = [park_commission_button]
-    fourth_row = [auto_license_button, self_employed_instructions_button]
-    fifth_row = [jump_taxi_url_button, admin_contact_button]
+    third_row = [auto_license_button, self_employed_instructions_button]
+    fourth_row = [jump_taxi_url_button, admin_contact_button]
+    fifth_row = [return_back_button]
     lines = [first_row, second_row, third_row, fourth_row, fifth_row]
-    markup = InlineKeyboardMarkup(row_width=1, resize_keyboard=True, inline_keyboard=lines)
+    markup = InlineKeyboardMarkup(row_width=5, resize_keyboard=True, inline_keyboard=lines)
     return markup
 
 

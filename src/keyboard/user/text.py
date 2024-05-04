@@ -23,14 +23,15 @@ ButtonTextDict = {
     'promotions_info': 'Условия по акциям',
     'copy_referal': 'Скопировать реферальный ключ',
     'refer_friend': 'Пригласи друга',
-
     'no_commission_month': 'Месяц без комиссии',
 
     'help_on_road': 'Помощь на дороге',
+    'request_help': 'Запросить помощь',
+
     'make_suggestion': 'Внести предложение',
 
-    'bot_capabilites': 'Информация об возможностях бота',
-    'taxometr_capabilites': 'Возможности таксометра',
+    'bot_capabilities': 'Возможности бота',
+    'taxometr_capabilities': 'Возможности таксометра',
     'park_commission': 'Комиссия парка',
     'auto_license': 'Лицензия на авто',
     'self_employed': 'Инструкция как стать СМЗ',

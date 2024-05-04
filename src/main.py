@@ -9,6 +9,7 @@ from handlers.admin_handler import admin_handler
 from handlers.user_handler import user_handler, auth_handler
 from handlers.command_handler import command_handler
 from handlers.fsm.create_employee import create_employee
+from src.handlers.fsm.info_help_menu import edit_faq
 from src.handlers.middleware import AuthMiddleware
 from src.repository.user_repository import UserRepository
 from src.yandex.client import YandexAPI
@@ -25,6 +26,7 @@ def include_routes(dp: Dispatcher) -> None:
     dp.include_router(command_handler)
     dp.include_router(admin_handler)
     dp.include_router(create_employee)
+    dp.include_router(edit_faq)
 
 
 def register_arguments(dp: Dispatcher, config: ConfigParser) -> None:
